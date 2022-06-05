@@ -3,7 +3,7 @@ const zmq = require('zeromq');
 const app = async () =>{
   console.log("Connecting to hello world server...");
   const socket = new zmq.Request;
-  await socket.connect("tcp://127.0.0.1:5555");
+  socket.connect(process.env.ZMQ_CLIENT_ADDRESS);
 
   for(let request = 0;request<10;request++){
     console.log(`Sending request ${request}`);

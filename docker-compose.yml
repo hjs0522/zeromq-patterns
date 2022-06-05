@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  client:
+    build: "./basic-client"
+    image: "zeromqclient:1.0"
+    environment:
+      - ZMQ_CLIENT_ADDRESS=tcp://server:5555
+  server:
+    build: "./basic-server"
+    image: "zeromqserver:1.0"
+    environment:
+      - ZMQ_SERVER_ADDRESS=tcp://*:5555

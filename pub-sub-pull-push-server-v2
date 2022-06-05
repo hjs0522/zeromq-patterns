@@ -1,0 +1,17 @@
+const zmq = require("zeromq");
+
+const app = async ()=>{
+  const pub = new zmq.Publisher;
+  pub.bind("tcp://127.0.0.1:5557");
+  const collector = new zmq.Pull;
+  collector.bind("tcp://127.0.0.1:5558");
+
+
+  while(true){
+    const message = (await collector.receive()).toString();
+    console.log("server: publishing update => ",message);
+    pub.send(message);
+  }
+}
+
+app();
