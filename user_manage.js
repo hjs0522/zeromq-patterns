@@ -13,7 +13,7 @@ class ServerWorker{
         await reply.bind(`tcp://${local_ip_addr}:${port_subscribe}`);
         console.log(`local p2p db server activated at tcp://${local_ip_addr}:${port_subscribe}`);
         while(true){
-            const req = await reply.receive().toString().split(":");
+            const req = ((await reply.receive()).toString()).split(":");
             user_db.push(req);
             console.log(`user registration ${req[1]} from ${req[0]}.`);
             reply.send("ok");
