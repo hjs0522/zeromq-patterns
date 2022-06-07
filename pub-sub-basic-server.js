@@ -5,7 +5,7 @@ const randrange = (start,end) =>{
 }
 
 const app = async () =>{
-  print("Publishing updates at weather server...");
+  console.log("Publishing updates at weather server...");
   const socket = new zmq.Publisher;
   await socket.bind("tcp://127.0.0.1:5556");
   while(true){

@@ -9,8 +9,8 @@ const app = async () =>{
   sub.connect("tcp://127.0.0.1:5557");
   sub.subscribe("");
   sub.receiveTimeout = 100;
-  const pub = new zmq.Push;
-  pub.connect("tcp://127.0.0.1:5558");
+  const push = new zmq.Push;
+  push.connect("tcp://127.0.0.1:5558");
 
   while(true){
     await sub.receive().then((msg)=>{
@@ -18,7 +18,7 @@ const app = async () =>{
     },()=>{
       let rand = randrange(1,100);
       if (rand<10){
-        pub.send(rand);
+        push.send(rand);
         console.log("I: sending message",rand);
       }
     });

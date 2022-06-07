@@ -5,7 +5,7 @@ const getZipFilter = (argv) =>{
 }
 
 const app = async ()=>{
-  const socket = zmq.Subscriber;
+  const socket = new zmq.Subscriber;
 
   console.log("Collecting updates from weather server...");
   await socket.connect("tcp://127.0.0.1:5556");
@@ -23,7 +23,7 @@ const app = async ()=>{
     console.log(`Receive temperature for zipcode ${zip_filter} was ${temperature} F`);
     cnt+=1
   }
-  console.log(`Average temperature for zipcode ${zip_filter} was ${totla_temp / (cnt)}`)
+  console.log(`Average temperature for zipcode ${zip_filter} was ${total_temp / (cnt)}`)
 }
 
 app();
